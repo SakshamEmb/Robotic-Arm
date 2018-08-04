@@ -88,7 +88,7 @@ def theta(X,Y,Z,r,p,y,a1,a2,a3):
     #theta6 = acos(((R36[2,1])/cos(theta5)))
     #theta4 = asin(((R36[1,2])/cos(theta5)))
     
-    angle=[theta1,theta2,theta3]
+    angle=[theta1.real,theta2.real,theta3.real]
     print(r3)    
     return angle
 
