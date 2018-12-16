@@ -31,7 +31,7 @@ class MotorPID
 
         int dir;
 
-        //int dir2;
+        
 
         int pwm;
         
@@ -43,9 +43,9 @@ class MotorPID
         
         void PIDcalculation();
         
-        double Kp  ;
-        double Ki ;
-        double Kd ;
+        double Kp = 2  ;
+        double Ki = 0.39 ;
+        double Kd = 0.15 ;
 
         float last_error = 0;
         float error = 0;
