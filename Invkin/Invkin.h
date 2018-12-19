@@ -2,8 +2,6 @@
 
 #define Invkin_h
 
-
-
 #include "Arduino.h"
 
 
@@ -18,25 +16,21 @@ class Invkin
 
     void transform();    
     
-    int alpha, alpha1,alpha2,beta,gamma;
+    float theta3,theta1,theta2,im,r3;
     
     
     private:
     
-    void trigono_xyz(float x, float y, float z);
+    void trigono_xyz(float , float , float );
     
-    const float cx=10; //cox a
-    const float fm=40; //femur
-    const float tb=30; // tibia
+    const float a1=10; //cox a
+    const float a2=40; //femur
+    const float a3=30; // tibia
     
     float L, L1;
     
-    float x ,y,z; 
-    
-    
-    
-
-    
+    float X ,Y,Z; 
+        
 };
 
 
