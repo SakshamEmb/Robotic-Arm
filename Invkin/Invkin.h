@@ -23,9 +23,9 @@ class Invkin
     
     void trigono_xyz(float , float , float );
     
-    const float a1=10; //cox a
-    const float a2=40; //femur
-    const float a3=30; // tibia
+    const float a1=10; 
+    const float a2=40; 
+    const float a3=30; 
     
     float L, L1;
     
