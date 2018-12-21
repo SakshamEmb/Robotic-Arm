@@ -63,7 +63,7 @@ void MotorPID::PIDcalculation(){
 }
 
 
-/*void MotorPID::setPID(float kp , float ki , float kd){
+void MotorPID::setPID(float kp , float ki , float kd){
     
     Kp = kp ;
     
@@ -72,4 +72,4 @@ void MotorPID::PIDcalculation(){
     Kd = kd ;
     
     
-}*/ 
+} 

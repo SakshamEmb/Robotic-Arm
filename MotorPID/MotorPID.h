@@ -20,7 +20,7 @@ class MotorPID
 
         int x;
         
-        setPID(float,float,float);
+        void setPID(float,float,float);
         
         
         
@@ -43,9 +43,9 @@ class MotorPID
         
         void PIDcalculation();
         
-        double Kp = 2  ;
-        double Ki = 0.39 ;
-        double Kd = 0.15 ;
+        double Kp  ;
+        double Ki  ;
+        double Kd  ;
 
         float last_error = 0;
         float error = 0;
