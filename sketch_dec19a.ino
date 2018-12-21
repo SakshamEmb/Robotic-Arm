@@ -11,10 +11,13 @@ float Z ;
 float x ;
 float y ;
 float z ;
-
 */
 //ros::NodeHandle node;
 //geometry_msgs::Point msg;
+
+Invkin IK(2,4,6);
+
+
 
 MotorPID M1(3,22,A0);   // pwm , dir , potenio 
 MotorPID M2(4,23,A1);
@@ -37,7 +40,7 @@ MotorPID M3(5,24,A2);
 
 void setup()
 {
-  Serial.begin(115200);  
+  Serial.begin(9600);  
   
 /*  node.getHardware()->setBaud(115200);
   node.initNode();
@@ -47,6 +50,14 @@ void setup()
   pinMode(A0,INPUT);
   pinMode(3,OUTPUT);
   pinMode(22,OUTPUT);
+  
+  pinMode(A1,INPUT);
+  pinMode(4,OUTPUT);
+  pinMode(23,OUTPUT);
+  
+  pinMode(A2,INPUT);
+  pinMode(5,OUTPUT);
+  pinMode(24,OUTPUT);
   
   M1.setPID(0.9,0.02,0.02);  //elbow
   M2.setPID(0.85,0.02,0.02); //shoulder
