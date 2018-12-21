@@ -4,7 +4,7 @@
 
 #include "Invkin.h"
 #include "MotorPID.h"
-
+/*
 float X ;
 float Y ;
 float Z ;
@@ -12,6 +12,7 @@ float x ;
 float y ;
 float z ;
 
+*/
 //ros::NodeHandle node;
 //geometry_msgs::Point msg;
 
