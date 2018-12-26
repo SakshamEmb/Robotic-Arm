@@ -2,13 +2,12 @@
 #include "MotorPID.h"
 
 
-MotorPID::MotorPID(int pin1 , int pin2 , char m,int a) {
-  //pinMode(2, INPUT);//encoder pins
-  pinMode(pin1, OUTPUT);
-    
-  pinMode(m,INPUT);
-  //pinMode(dir1, OUTPUT);
-  pinMode(pin2, OUTPUT);
+MotorPID::MotorPID(int pin1 , int pin2 , char m,int a , int pinL) {
+  pinMode(pin1, OUTPUT); // pwm
+  pinMode(m,INPUT); //dir
+  pinMode(pin2, OUTPUT); //analog potentiometer
+  pinMode(pinL , INPUT ); //limiter
+  
     
   pwm = pin1 ;
         
@@ -22,18 +21,17 @@ MotorPID::MotorPID(int pin1 , int pin2 , char m,int a) {
  totalError = 0;
  pidTerm = 0;
     
- pidlow = a ;    
-    
+ pidlow = a ; 
+  
+  limit = pin: ;
+ 
     
  //pidTerm_scaled = 0 ;    
     
 }
 
 
-void MotorPID::errorcheck(){
-    
-
-    
+void MotorPID::errorcheck(){        
   int pot = analogRead(analog);      
   setpoint = x ;    
   angle = map(pot,0,1023,0,3600); //count to angle conversion
@@ -53,15 +51,13 @@ void MotorPID::errorcheck(){
     Serial.println(pidTerm_scaled);  
     analogWrite(pwm, pidTerm_scaled);
   }   
-  //Serial.println(pidTerm_scaled);  
-  //delay(100);
 }
 
 void MotorPID::PIDcalculation(){
     
   error = setpoint - angle;  
   Serial.print("Error calc: ");
-                 Serial.println(error);
+  Serial.println(error);
   changeError = error - last_error; // derivative term
   totalError += error; //accumalate errors to find integral term
   pidTerm = (Kp * error) + (Ki * totalError) + (Kd * changeError);//total gain
@@ -69,6 +65,21 @@ void MotorPID::PIDcalculation(){
   pidTerm_scaled = abs(pidTerm); //to make sure it's a positive value
   last_error = error;
 
+}
+
+void MotorPID::safetycheck(){
+  
+  touch = digitalRead(limit);
+  
+  if(touch == 0 ) {
+    
+   errorcheck();
+    
+  }
+  else{
+    if(angle<limiter){}
+    if(angle==){} //if potentiometer goes dead 
+    else{}    
 }
 
 
@@ -79,6 +90,5 @@ void MotorPID::setPID(float kp , float ki , float kd){
     Ki = ki ;
     
     Kd = kd ;  
-    
-    
+     
 } 
