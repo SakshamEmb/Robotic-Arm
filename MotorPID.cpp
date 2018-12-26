@@ -36,7 +36,7 @@ void MotorPID::errorcheck(){
   setpoint = x ;    
   angle = map(pot,0,1023,0,3600); //count to angle conversion
 
-  PIDcalculation();// find PID value 
+  PIDcalculation(); // find PID value 
   
   if (angle < setpoint) {
     digitalWrite(dir, HIGH);// Forward motion
@@ -78,7 +78,7 @@ void MotorPID::safetycheck(){
   }
   else{
     if(angle<limiter){}
-    if(angle==){} //if potentiometer goes dead 
+    if(angle==0){} //if potentiometer goes dead 
     else{}    
 }
 
