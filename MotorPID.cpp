@@ -3,31 +3,23 @@
 
 
 MotorPID::MotorPID(int pin1 , int pin2 , char m,int a , int pinL) {
+  
   pinMode(pin1, OUTPUT); // pwm
   pinMode(m,INPUT); //dir
   pinMode(pin2, OUTPUT); //analog potentiometer
   pinMode(pinL , INPUT ); //limiter
-  
     
-  pwm = pin1 ;
-        
-  dir = pin2 ;
-    
+  pwm = pin1 ;        
+  dir = pin2 ;    
   analog = m ;        
   
  last_error = 0;
  error = 0;
  changeError = 0;
  totalError = 0;
- pidTerm = 0;
-    
+ pidTerm = 0;    
  pidlow = a ; 
-  
-  limit = pin: ;
- 
-    
- //pidTerm_scaled = 0 ;    
-    
+ limiter = pin: ;    
 }
 
 
@@ -67,9 +59,9 @@ void MotorPID::PIDcalculation(){
 
 }
 
-void MotorPID::safetycheck(){
+void MotorPID::move_safe(){
   
-  touch = digitalRead(limit);
+  touch = digitalRead(limiter);
   
   if(touch == 0 ) {
     
@@ -77,7 +69,7 @@ void MotorPID::safetycheck(){
     
   }
   else{
-    if(angle<limiter){}
+    if(angle<limit){errorcheck();}
     if(angle==0){} //if potentiometer goes dead 
     else{}    
 }
