@@ -39,17 +39,17 @@ void MotorPID::errorcheck(){
     
   else  {
     digitalWrite(dir, LOW);//Reverse motion
-    //digitalWrite(dir2, LOW);
     Serial.println(pidTerm_scaled);  
     analogWrite(pwm, pidTerm_scaled);
   }   
 }
 
 void MotorPID::PIDcalculation(){
-    
+  /*  
   error = setpoint - angle;  
   Serial.print("Error calc: ");
   Serial.println(error);
+  */
   changeError = error - last_error; // derivative term
   totalError += error; //accumalate errors to find integral term
   pidTerm = (Kp * error) + (Ki * totalError) + (Kd * changeError);//total gain
@@ -60,18 +60,19 @@ void MotorPID::PIDcalculation(){
 }
 
 void MotorPID::move_safe(){
-  
+  error = setpoint - angle;  
+  Serial.print("Error calc: ");
+  Serial.println(error);
   touch = digitalRead(limiter);
   
   if(touch == 0 ) {
-    
-   errorcheck();
-    
+   errorcheck();    
   }
   else{
-    if(angle<limit){errorcheck();}
-    if(angle==0){} //if potentiometer goes dead 
-    else{}    
+   Serial.println("-----------limit reached-------------");
+   if(angle<limit){errorcheck();}
+   if(angle==0){Serial.println("---------check potentiometer connections-----);}             //if potentiometer goes dead 
+   else{}    
 }
 
 
