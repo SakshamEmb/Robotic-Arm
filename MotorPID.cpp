@@ -19,7 +19,7 @@ MotorPID::MotorPID(int pin1 , int pin2 , char m,int a , int pinL) {
  totalError = 0;
  pidTerm = 0;    
  pidlow = a ; 
- limiter = pin ;    
+ limiter = pinL ;    
 }
 
 
@@ -41,9 +41,10 @@ void MotorPID::errorcheck(){
     digitalWrite(dir, LOW);//Reverse motion
     Serial.println(pidTerm_scaled);  
     analogWrite(pwm, pidTerm_scaled);
-  } }
+  }
+  }
   else{
-  if+){
+  if(){
     Serial.println("-----------limit reached-------------");
     if (angle < setpoint) {
     digitalWrite(dir, HIGH);// Forward motion
