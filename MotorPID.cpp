@@ -24,11 +24,10 @@ MotorPID::MotorPID(int pin1 , int pin2 , char m,int a , int pinL) {
 
 
 void MotorPID::errorcheck(){        
-  /*
+ 
   int pot = analogRead(analog);      
   setpoint = x ;    
   angle = map(pot,0,1023,0,3600); //count to angle conversion
-  */
   PIDcalculation(); // find PID value 
   touch = digitalRead(limiter);
   if(touch == 0 ){
@@ -44,7 +43,7 @@ void MotorPID::errorcheck(){
     analogWrite(pwm, pidTerm_scaled);
   } }
   else{
-  if(setpoint<limit){
+  if+){
     Serial.println("-----------limit reached-------------");
     if (angle < setpoint) {
     digitalWrite(dir, HIGH);// Forward motion
@@ -73,27 +72,6 @@ void MotorPID::PIDcalculation(){
   last_error = error;
 
 }
-
-/*void MotorPID::move_safe(){
-  int pot = analogRead(analog);      
-  setpoint = x ;    
-  angle = map(pot,0,1023,0,3600); //count to angle conversion
-  PIDcalculation(); 
-  touch = digitalRead(limiter);
-  
-  if(touch == 0 ) {
-    if(angle==0){Serial.println("---------check potentiometer connections-----);} 
-    else{                            
-    errorcheck();   
-    }
-  }
-  else{
-   Serial.println("-----------limit reached-------------");
-   if(angle<limit){errorcheck();}
-   else{}    
-}
-*/
-
 
 void MotorPID::setPID(float kp , float ki , float kd){
     
