@@ -19,7 +19,7 @@ MotorPID::MotorPID(int pin1 , int pin2 , char m,int a , int pinL) {
  totalError = 0;
  pidTerm = 0;    
  pidlow = a ; 
- limiter = pin: ;    
+ limiter = pin ;    
 }
 
 
@@ -30,11 +30,10 @@ void MotorPID::errorcheck(){
   angle = map(pot,0,1023,0,3600); //count to angle conversion
   */
   PIDcalculation(); // find PID value 
- 
-  
+  touch = digitalRead(limiter);
+  if(touch == 0 ){
   if (angle < setpoint) {
     digitalWrite(dir, HIGH);// Forward motion
-    //digitalWrite(dir, HIGH);
     Serial.println(pidTerm_scaled);  
     analogWrite(pwm, pidTerm_scaled);
   }
@@ -43,7 +42,23 @@ void MotorPID::errorcheck(){
     digitalWrite(dir, LOW);//Reverse motion
     Serial.println(pidTerm_scaled);  
     analogWrite(pwm, pidTerm_scaled);
-  }   
+  } }
+  else{
+  if(setpoint<limit){
+    Serial.println("-----------limit reached-------------");
+    if (angle < setpoint) {
+    digitalWrite(dir, HIGH);// Forward motion
+    Serial.println(pidTerm_scaled);  
+    analogWrite(pwm, pidTerm_scaled);
+  }
+    
+  else  {
+    digitalWrite(dir, LOW);//Reverse motion
+    Serial.println(pidTerm_scaled);  
+    analogWrite(pwm, pidTerm_scaled);                
+   }}
+   else{} 
+    
 }
 
 void MotorPID::PIDcalculation(){  
@@ -59,7 +74,7 @@ void MotorPID::PIDcalculation(){
 
 }
 
-void MotorPID::move_safe(){
+/*void MotorPID::move_safe(){
   int pot = analogRead(analog);      
   setpoint = x ;    
   angle = map(pot,0,1023,0,3600); //count to angle conversion
@@ -77,6 +92,7 @@ void MotorPID::move_safe(){
    if(angle<limit){errorcheck();}
    else{}    
 }
+*/
 
 
 void MotorPID::setPID(float kp , float ki , float kd){
