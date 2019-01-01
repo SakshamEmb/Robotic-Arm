@@ -44,7 +44,7 @@ void MotorPID::errorcheck(){
   }
   }
   else{
-  if(){
+  if(setpoint < limit){
     Serial.println("-----------limit reached-------------");
     if (angle < setpoint) {
     digitalWrite(dir, HIGH);// Forward motion
